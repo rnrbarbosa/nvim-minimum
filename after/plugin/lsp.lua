@@ -44,6 +44,7 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
 	vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
 	vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+	vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, {})
 	vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
 	vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
 	vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
@@ -57,10 +58,6 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
 	vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
-require('lspconfig')['pyright'].setup{
-    on_attach = on_attach,
-    flags = lsp_flags,
-}
 
 local lsputil = require 'lspconfig/util'
 local configs = require 'lspconfig/configs'
@@ -71,4 +68,25 @@ require'lspconfig'.bicep.setup{
     root_dir = lsputil.root_pattern(".git");
 }
 
-lsp.setup()
+local servers = { 
+	'sumneko_lua',
+	'ansiblels',
+	'bashls',
+	'dockerls',
+	'gopls',
+	'jsonls',
+	'remark_ls',
+	'pyright',
+	'taplo',
+	'yamlls',
+}
+
+for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup {
+    on_attach = on_attach,
+    flags = {
+      debounce_text_changes = 150,
+    },
+  }
+end
+
