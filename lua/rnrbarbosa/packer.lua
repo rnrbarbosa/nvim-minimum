@@ -48,9 +48,19 @@ return require('packer').startup(function(use)
 		  {'rafamadriz/friendly-snippets'}, -- Optional
 	  }
   }
+  use 'kyazdani42/nvim-web-devicons'
   use {
   'nvim-lualine/lualine.nvim',
   requires = { 'kyazdani42/nvim-web-devicons', opt = true }
  }
-
+ use({
+    "glepnir/lspsaga.nvim",
+    branch = "main",
+    config = function()
+        require("lspsaga").setup({})
+    end,
+    requires = { {"nvim-tree/nvim-web-devicons"} }
+})
+use { "nvim-telescope/telescope-file-browser.nvim" }
+use 'nvim-treesitter/nvim-treesitter'
 end)
