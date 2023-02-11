@@ -26,6 +26,7 @@ return require('packer').startup(function(use)
   )
   use 'mbbill/undotree'
   use 'tpope/vim-fugitive'
+  use 'nvim-telescope/telescope-project.nvim'
   use {
 	  'VonHeikemen/lsp-zero.nvim',
 	  branch = 'v1.x',
@@ -63,4 +64,22 @@ return require('packer').startup(function(use)
 })
 use { "nvim-telescope/telescope-file-browser.nvim" }
 use 'nvim-treesitter/nvim-treesitter'
+-- Lua
+use {
+  "folke/which-key.nvim",
+  config = function()
+    vim.o.timeout = true
+    vim.o.timeoutlen = 300
+  end
+}
+use 'rcarriga/nvim-notify'
+use 'akinsho/toggleterm.nvim'
+use {
+  'lewis6991/gitsigns.nvim',
+  config = function()
+    require('gitsigns').setup()
+  end
+}
+use 'williamboman/nvim-lsp-installer'
+use 'ggandor/lightspeed.nvim'
 end)
