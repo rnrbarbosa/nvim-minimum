@@ -1,11 +1,15 @@
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-vim.keymap.set('n', '<C-p>', builtin.git_files, {})
-vim.keymap.set('n', '<leader>fg', function()
+local  map = vim.keymap.set
+local opts = { noremap = true }
+---
+map('n', '<leader>tf', builtin.find_files, opts)
+map('n', '<leader>bb', builtin.buffers, opts)
+map('n', '<leader>th', builtin.help_tags, opts)
+map('n', '<C-p>', builtin.git_files, opts)
+map('n', '<leader>tg', function()
 	builtin.grep_string({ search = vim.fn.input("Grep > ") });
 end)
+map("n", "<space>tb", ":Telescope file_browser<CR>", opts)
 
 require("telescope").setup {
   extensions = {
@@ -26,4 +30,5 @@ require("telescope").setup {
 }
 -- To get telescope-file-browser loaded and working with telescope,
 -- you need to call load_extension, somewhere after setup function:
-require("telescope").load_extension "file_browser"
+require('telescope').load_extension('file_browser')
+require('telescope').load_extension('project')
