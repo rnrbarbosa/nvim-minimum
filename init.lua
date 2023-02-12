@@ -1,1 +1,3 @@
-require("rnrbarbosa")
+-- require("config")
+require("mappings")
+require("plugins")
