@@ -20,6 +20,7 @@ return require('packer').startup(function(use)
 			vim.cmd('colorscheme rose-pine')
 		end
 	})
+	use 'ellisonleao/gruvbox.nvim'
 	use (
 	'nvim-treesitter/nvim-treesitter', 
 	{run = ':TSUpdate'}
@@ -42,6 +43,7 @@ return require('packer').startup(function(use)
 			{ "jbyuki/one-small-step-for-vimkind", module = "osv" },
 		},
 	}
+	use 'mfussenegger/nvim-dap-python'
 
 	use 'numToStr/Comment.nvim'
 	use {
@@ -104,6 +106,7 @@ return require('packer').startup(function(use)
 			require('gitsigns').setup()
 		end
 	}
+	use 'jose-elias-alvarez/null-ls.nvim'
 	use 'williamboman/nvim-lsp-installer'
 	use 'ggandor/lightspeed.nvim'
 end)

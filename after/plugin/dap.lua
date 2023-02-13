@@ -30,3 +30,6 @@ dap.configurations.python = {
     end;
   },
 }
+
+require('dap-python').setup('/Users/rnrbarbosa/.pyenv/shims/python')
+require('dapui').setup()
